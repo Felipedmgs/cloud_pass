@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Meu Sistema{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'app_sistema/css/style.css' %}">
+</head>
+<body>
+    <div class="navbar">
+        <nav>
+            <a href="{% url 'list_credentials' %}">
+                <i class="fas fa-list"></i> Listar Credenciais
+            </a>
+            <a href="{% url 'register_password' %}">
+                <i class="fas fa-key"></i> Nova Senha
+            </a>
+            <a href="{% url 'logout' %}">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </a>
+        </nav>
+    </div>
+    
+
+    <!-- Conteúdo Principal -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Scripts adicionais -->
+    <script>
+        function toggleModal(show) {
+            const modal = document.getElementById("passwordModal");
+            modal.style.display = show ? "flex" : "none";
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById("passwordModal");
+            if (event.target == modal) {
+                toggleModal(false);
+            }
+        };
+    </script>
+
+
+</body>
+</html>

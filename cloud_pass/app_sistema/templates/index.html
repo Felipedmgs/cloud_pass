@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Login</title>
+    <style>
+            
+        /* Reset de margens e padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Estilo do fundo da página */
+        body {
+            background-image: url("{% static 'app_sistema/images/login_background.jpg' %}");
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f9; /* ou uma imagem de fundo */
+        }
+
+        /* Container do formulário */
+        .login-container {
+            background-color: #ffffff;
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Estilo do título */
+        h1 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Estilo das mensagens de erro */
+        .error {
+            color: red;
+            margin-bottom: 1rem;
+        }
+
+        /* Estilo dos labels e inputs */
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 0.5rem 0 0.3rem;
+            text-align: left;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Botão de login */
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Efeito de hover no botão */
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+
+        <!-- Mensagens do Django -->
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li style="color: green;">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <!-- Mensagem de erro -->
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <!-- Formulário de login -->
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" name="username" required aria-label="Usuário">
+
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required aria-label="Senha">
+
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>
