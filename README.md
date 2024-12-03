@@ -16,8 +16,7 @@
 
 1. Certifique-se de ter **Python 3.9+** instalado.
 2. Instale as dependências necessárias:
-   ```bash
-   pip install PyQt6 pyperclip
+
 
 🚀 Uso
 
